@@ -1,7 +1,15 @@
 package dao;
 
-import entidade.Cliente;
+import model.Cliente;
 import factory.ConexaoFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import repository.ClienteRepository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,16 +18,23 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ClienteDAO {
-    public ClienteDAO() {
+@Controller
+@RequestMapping("tbl_cliente")
+public class ClienteEndPoint {
+    private final ClienteRepository clienteDao;
+
+
+    @Autowired
+    public ClienteEndPoint(ClienteRepository clienteDao) {
+        this.clienteDao = clienteDao;
     }
 
-    /**
-     * Método atualiza cliente no banco.
-     *
-     * @param cliente a ser atualizado
-     * @return mensagem de sucesso.
-     */
+    @RequestMapping(path = "/lavajato/cliente/{cliente}")
+    public ResponseEntity listarCliesntes(@PathVariable Cliente cliente) {
+        return clienteDao.findAll(cliente)
+                .map(record -> ResponseEntity.ok().body(record))
+                .orElse(ResponseEntity.notFound().build());
+    }
 
     public static void insert(Cliente cliente) {
         String sql = "INSERT INTO `lavajato`.`tbl_cliente` (`nome`, `contato`, `cpf`) VALUES (?, ?, ?);";
@@ -72,46 +87,42 @@ public class ClienteDAO {
         }
     }
 
-    private String read(Cliente cliente) {
-        return "Atualização feita com sucesso.";
-    }
+//    public static List<Cliente> listAll(Cliente cliente) {
+//        String sql = "SELECT id_Cliente, nome, contato, cpf FROM lavajato.tbl_cliente;";
+//        List<Cliente> clienteList = new ArrayList<>();
+//        try (Connection conn = ConexaoFactory.getConexao();
+//             PreparedStatement ps = conn.prepareStatement(sql);
+//             ResultSet rs = ps.executeQuery();) {
+//            while (rs.next()) {
+//                clienteList.add(new Cliente(rs.getInt("id_Cliente"), rs.getString("nome"),
+//                        rs.getString("contato"), rs.getString("cpf")));
+//            }
+//            return clienteList;
+//
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//        return null;
+//    }
 
-    public static List<Cliente> listAll(Cliente cliente) {
-        String sql = "SELECT id_Cliente, nome, contato, cpf FROM lavajato.tbl_cliente;";
-        List<Cliente> clienteList = new ArrayList<>();
-        try (Connection conn = ConexaoFactory.getConexao();
-             PreparedStatement ps = conn.prepareStatement(sql);
-             ResultSet rs = ps.executeQuery();) {
-            while (rs.next()) {
-                clienteList.add(new Cliente(rs.getInt("id_Cliente"), rs.getString("nome"),
-                        rs.getString("contato"), rs.getString("cpf")));
-            }
-            return clienteList;
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    public static List<Cliente> searchByName(String nome) {
-        String sql = "SELECT id_Cliente, nome, contato, cpf FROM lavajato.tbl_cliente where nome LIKE ?";
-        List<Cliente> clienteList = new ArrayList<>();
-        try (Connection conn = ConexaoFactory.getConexao();
-             PreparedStatement ps = conn.prepareStatement(sql);) {
-            ps.setString(1, "%" + nome + "%");
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                clienteList.add(new Cliente(rs.getInt("id_CLiente"), rs.getString("nome"),
-                        rs.getString("contato"), rs.getString("cpf")));
-            }
-            ConexaoFactory.close(conn, ps, rs);
-            return clienteList;
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
+//    public static List<Cliente> searchByName(String nome) {
+//        String sql = "SELECT id_Cliente, nome, contato, cpf FROM lavajato.tbl_cliente where nome LIKE ?";
+//        List<Cliente> clienteList = new ArrayList<>();
+//        try (Connection conn = ConexaoFactory.getConexao();
+//             PreparedStatement ps = conn.prepareStatement(sql);) {
+//            ps.setString(1, "%" + nome + "%");
+//            ResultSet rs = ps.executeQuery();
+//            while (rs.next()) {
+//                clienteList.add(new Cliente(rs.getInt("id_CLiente"), rs.getString("nome"),
+//                        rs.getString("contato"), rs.getString("cpf")));
+//            }
+//            ConexaoFactory.close(conn, ps, rs);
+//            return clienteList;
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//        return null;
+//    }
 
     public static Cliente searchById(Integer id_Cliente) {
         String sql = "SELECT id_Cliente, nome, contato, cpf FROM lavajato.tbl_cliente where id_Cliente= ?";

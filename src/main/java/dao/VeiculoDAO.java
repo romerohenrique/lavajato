@@ -1,7 +1,7 @@
 package dao;
 
-import entidade.Cliente;
-import entidade.Veiculo;
+import model.Cliente;
+import model.Veiculo;
 import factory.ConexaoFactory;
 
 import java.sql.Connection;
@@ -11,7 +11,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class VeiculoDAO {
+public class
+VeiculoDAO {
     public VeiculoDAO() {
 
     }
@@ -73,7 +74,7 @@ public class VeiculoDAO {
              PreparedStatement ps = conn.prepareStatement(sql);
              ResultSet rs = ps.executeQuery();) {
             while (rs.next()) {
-                Cliente c = ClienteDAO.searchById(rs.getInt("id_Cliente"));
+                Cliente c = ClienteEndPoint.searchById(rs.getInt("id_Cliente"));
                 veiculoList.add(new Veiculo(rs.getInt("id_Veiculo"), rs.getString("marca"),
                         rs.getString("modelo"), rs.getString("placa"), c));
             }
