@@ -1,4 +1,4 @@
-package enums;
+package br.com.lavajato.enums;
 
 public enum TipoServicosLavaJato {
     MOTO_LAVAGEM(1, "Moto - Lavagem Simples ", 20),

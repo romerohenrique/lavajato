@@ -1,4 +1,4 @@
-package services;
+package br.com.lavajato.services;
 
 public class VeiculoService {
 

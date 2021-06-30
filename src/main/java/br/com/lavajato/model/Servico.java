@@ -1,4 +1,4 @@
-package model;
+package br.com.lavajato.model;
 
 
 import java.util.Objects;
