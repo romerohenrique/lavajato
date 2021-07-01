@@ -1,77 +1,39 @@
 package br.com.lavajato.model;
 
-import lombok.Data;
+import lombok.*;
+import org.assertj.core.internal.bytebuddy.implementation.bytecode.StackManipulation;
 
-import javax.persistence.Entity;
-@Data
+import javax.persistence.*;
+import javax.validation.constraints.Size;
+import java.io.Serializable;
+
+@Getter
+@Setter
+@EqualsAndHashCode
+@ToString
 @Entity
-public class Veiculo extends AbstractEntity {
+@Table(name = "veiculo", schema = "dbo_teste_lavajato")
+public class Veiculo implements Serializable {
 
-    private static final long serialVersionUID = -1456376792898670929L;
+    private static final long serialVersionUID = -7069327751173158359L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
+
+    @Size(max = 30, message = "Máximo 30 caracteres")
+    @Column(nullable = false, length = 30)
     private String marca;
+
+    @Size(max = 30, message = "Máximo 30 caracteres")
+    @Column(nullable = false, length = 30)
     private String modelo;
+
+    @Size(max = 9, message = "Máximo 9 caracteres")
+    @Column(length = 9)
+    @NonNull
     private String placa;
+
+    @ManyToOne
     private Cliente cliente;
-
-//
-//    public Veiculo(Integer id, String marca, String modelo, String placa, Cliente cliente) {
-//        this.id = id;
-//        this.marca = marca;
-//        this.modelo = modelo;
-//        this.placa = placa;
-//        this.cliente = cliente;
-//    }
-//
-
-//
-//    public Integer getId() {
-//        return id;
-//    }
-//
-//    public void setId(Integer id) {
-//        this.id = id;
-//    }
-//
-//    public String getMarca() {
-//        return marca;
-//    }
-//
-//    public void setMarca(String marca) {
-//        this.marca = marca;
-//    }
-//
-//    public String getModelo() {
-//        return modelo;
-//    }
-//
-//    public void setModelo(String modelo) {
-//        this.modelo = modelo;
-//    }
-//
-//    public String getPlaca() {
-//        return placa;
-//    }
-//
-//    public void setPlaca(String placa) {
-//        this.placa = placa;
-//    }
-//
-//    public Cliente getCliente() {
-//        return cliente;
-//    }
-//
-//    public void setCliente(Cliente cliente) {
-//        this.cliente = cliente;
-//    }
-//
-//    @Override
-//    public String toString() {
-//        return "Veiculo{" +
-//                "id=" + id +
-//                ", marca='" + marca + '\'' +
-//                ", modelo='" + modelo + '\'' +
-//                ", placa='" + placa + '\'' +
-//                ", cliente=" + cliente +
-//                '}';
-//    }
 }
