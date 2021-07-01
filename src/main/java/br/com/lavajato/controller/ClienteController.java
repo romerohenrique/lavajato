@@ -25,11 +25,6 @@ public class ClienteController {
     @Autowired
     private final ClienteService clienteService;
 
-    @GetMapping(path = "teste")
-    public String check() {
-        log.info(dateUtil.formatLocalDateTimeToDataBaseStyle(LocalDateTime.now()));
-        return "to on-line";
-    }
 
     @GetMapping(path = "/{id}")
     public ResponseEntity<Cliente> findById(@PathVariable Integer id) {
@@ -47,6 +42,14 @@ public class ClienteController {
     public ResponseEntity<Cliente> save(@RequestBody Cliente cliente) {
         log.info(dateUtil.formatLocalDateTimeToDataBaseStyle(LocalDateTime.now()));
         return new ResponseEntity<>(clienteService.save(cliente), HttpStatus.CREATED);
+    }
+
+    @PutMapping
+    public ResponseEntity<Cliente> replace(@RequestBody Cliente cliente){
+        clienteService.replace(cliente);
+        log.info(dateUtil.formatLocalDateTimeToDataBaseStyle(LocalDateTime.now()));
+
+        return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
 
     @DeleteMapping(path = "/{id}")

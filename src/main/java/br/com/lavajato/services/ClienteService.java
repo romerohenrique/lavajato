@@ -17,6 +17,13 @@ public class ClienteService {
     @Autowired
     private final ClienteRepository clienteRepository;
 
+    public void replace(Cliente cliente){
+        clienteRepository.findById(cliente.getId()).orElseThrow(
+                ()-> new EntityNotFoundException("Client not found"));
+        clienteRepository.save(cliente);
+
+    }
+
     public Cliente findById(Integer id) {
         return clienteRepository.findById(id).orElseThrow(
                 () -> new EntityNotFoundException("Id not found" + id));
