@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 
+
 @RestController
 @RequestMapping("clientes")
 @AllArgsConstructor
@@ -33,16 +34,26 @@ public class ClienteController {
     @GetMapping(path = "/{id}")
     public ResponseEntity<Cliente> findById(@PathVariable Integer id) {
         Cliente cliente = clienteService.findById(id);
+        log.info(dateUtil.formatLocalDateTimeToDataBaseStyle(LocalDateTime.now()));
         return ResponseEntity.ok().body(cliente);
+    }
+
+    @GetMapping(path = "nome/{nome}")
+    public ResponseEntity<Cliente> findByNome(@PathVariable String nome) {
+        return ResponseEntity.ok().body(clienteService.findByName(nome));
     }
 
     @PostMapping(path = "/cadastrar")
     public ResponseEntity<Cliente> save(@RequestBody Cliente cliente) {
+        log.info(dateUtil.formatLocalDateTimeToDataBaseStyle(LocalDateTime.now()));
         return new ResponseEntity<>(clienteService.save(cliente), HttpStatus.CREATED);
     }
+
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<Cliente> delete(@PathVariable Integer id) {
         clienteService.delete(id);
+        log.info(dateUtil.formatLocalDateTimeToDataBaseStyle(LocalDateTime.now()));
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
 }
