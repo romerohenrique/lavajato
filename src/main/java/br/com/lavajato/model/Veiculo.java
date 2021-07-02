@@ -1,7 +1,6 @@
 package br.com.lavajato.model;
 
 import lombok.*;
-import org.assertj.core.internal.bytebuddy.implementation.bytecode.StackManipulation;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
@@ -12,7 +11,7 @@ import java.io.Serializable;
 @EqualsAndHashCode
 @ToString
 @Entity
-@Table(name = "veiculo", schema = "dbo_teste_lavajato")
+@Table(name = "veiculo", schema = "lavajato")
 public class Veiculo implements Serializable {
 
     private static final long serialVersionUID = -7069327751173158359L;
@@ -35,5 +34,6 @@ public class Veiculo implements Serializable {
     private String placa;
 
     @ManyToOne
+    @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 }
