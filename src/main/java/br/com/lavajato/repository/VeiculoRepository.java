@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public interface VeiculoRepository extends CrudRepository<Veiculo, Integer> {
 
-    @Query(nativeQuery = true, value = "select * from veiculo where cliente_id = ?1")
+    @Query(value = "select * from veiculo where cliente_id = ?1", nativeQuery = true)
     List<Veiculo> findAllByVeiculoId(Integer id);
 }
 
