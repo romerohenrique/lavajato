@@ -1,6 +1,8 @@
 package br.com.lavajato.enums;
 
-public enum TipoServicosLavaJato {
+
+
+public enum TipoAtendimentoEnum {
     MOTO_LAVAGEM(1, "Moto - Lavagem Simples ", 20),
     MOTO_POLIMENTO(2, "Moto - Polimento", 30),
     MOTO_POLIMENTO_CRISTALIZADO(3, "Moto - Polimento Cristalizado", 100),
@@ -19,7 +21,7 @@ public enum TipoServicosLavaJato {
     private final String nome;
     private final double preco;
 
-    TipoServicosLavaJato(int tipo, String nome, double preco) {
+    TipoAtendimentoEnum(int tipo, String nome, double preco) {
         this.tipo = tipo;
         this.nome = nome;
         this.preco = preco;

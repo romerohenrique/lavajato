@@ -1,6 +1,6 @@
 package br.com.lavajato.repository;
 
-import br.com.lavajato.model.Cliente;
+import br.com.lavajato.entity.Cliente;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

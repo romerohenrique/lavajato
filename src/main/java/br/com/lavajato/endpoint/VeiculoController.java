@@ -1,6 +1,6 @@
-package br.com.lavajato.controller;
+package br.com.lavajato.endpoint;
 
-import br.com.lavajato.model.Veiculo;
+import br.com.lavajato.entity.Veiculo;
 import br.com.lavajato.services.VeiculoService;
 import br.com.lavajato.util.DateUtil;
 import lombok.extern.log4j.Log4j2;
@@ -36,7 +36,7 @@ public class VeiculoController {
     public ResponseEntity<Veiculo> delete(@PathVariable Integer id) {
         veiculoService.delete(id);
         log.info("deletando veículo {}", dateUtil.formatLocalDateTimeToDataBaseStyle(LocalDateTime.now()));
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
 

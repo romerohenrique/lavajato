@@ -1,6 +1,6 @@
-package br.com.lavajato.controller;
+package br.com.lavajato.endpoint;
 
-import br.com.lavajato.model.Cliente;
+import br.com.lavajato.entity.Cliente;
 import br.com.lavajato.services.ClienteService;
 import br.com.lavajato.util.DateUtil;
 import lombok.AllArgsConstructor;
@@ -57,7 +57,7 @@ public class ClienteController {
         log.info("Deletando usuário {}", dateUtil.formatLocalDateTimeToDataBaseStyle(LocalDateTime.now()));
         clienteService.delete(id);
         log.info("usuário deletado {}", dateUtil.formatLocalDateTimeToDataBaseStyle(LocalDateTime.now()));
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 }

@@ -1,4 +1,4 @@
-package br.com.lavajato.model;
+package br.com.lavajato.entity;
 
 import lombok.*;
 

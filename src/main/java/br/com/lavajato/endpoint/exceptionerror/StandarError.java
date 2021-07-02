@@ -1,4 +1,4 @@
-package br.com.lavajato.controller.exceptionerror;
+package br.com.lavajato.endpoint.exceptionerror;
 
 import java.io.Serializable;
 import java.time.Instant;

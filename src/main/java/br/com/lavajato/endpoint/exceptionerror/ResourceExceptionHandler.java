@@ -1,4 +1,4 @@
-package br.com.lavajato.controller.exceptionerror;
+package br.com.lavajato.endpoint.exceptionerror;
 
 import br.com.lavajato.services.exceptionerror.EntityNotFoundException;
 import org.springframework.http.HttpStatus;

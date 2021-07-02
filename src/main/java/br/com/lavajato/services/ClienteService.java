@@ -1,6 +1,6 @@
 package br.com.lavajato.services;
 
-import br.com.lavajato.model.Cliente;
+import br.com.lavajato.entity.Cliente;
 import br.com.lavajato.repository.ClienteRepository;
 import br.com.lavajato.repository.VeiculoRepository;
 import br.com.lavajato.services.exceptionerror.EntityNotFoundException;

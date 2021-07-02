@@ -1,4 +1,4 @@
-package br.com.lavajato.model;
+package br.com.lavajato.entity;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -7,7 +7,6 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
 
 @Getter
 @Setter
