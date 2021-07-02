@@ -45,7 +45,7 @@ public class ClienteController {
     }
 
     @PutMapping
-    public ResponseEntity<Cliente> replace(@RequestBody Cliente cliente){
+    public ResponseEntity<Cliente> replace(@RequestBody Cliente cliente) {
         clienteService.replace(cliente);
         log.info(dateUtil.formatLocalDateTimeToDataBaseStyle(LocalDateTime.now()));
 
@@ -54,8 +54,9 @@ public class ClienteController {
 
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<Cliente> delete(@PathVariable Integer id) {
+        log.info("Deletando usuário {}", dateUtil.formatLocalDateTimeToDataBaseStyle(LocalDateTime.now()));
         clienteService.delete(id);
-        log.info(dateUtil.formatLocalDateTimeToDataBaseStyle(LocalDateTime.now()));
+        log.info("usuário deletado {}", dateUtil.formatLocalDateTimeToDataBaseStyle(LocalDateTime.now()));
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 

@@ -14,11 +14,10 @@ import java.util.List;
 @EqualsAndHashCode
 @ToString
 @Entity
-@Table(name = "cliente", schema = "dbo_teste_lavajato")
+@Table(name = "cliente", schema = "lavajato")
 public class Cliente implements Serializable {
 
     private static final long serialVersionUID = -5398800554640902699L;
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -32,9 +31,5 @@ public class Cliente implements Serializable {
 
     @Column(nullable = false, length = 14)
     private String contato;
-
-    @OneToMany
-    private List<Veiculo> veiculoList;
-
 
 }
