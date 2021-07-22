@@ -27,6 +27,9 @@ public class TipoAtendimento implements Serializable {
     @Enumerated(EnumType.STRING)
     private TipoAtendimentoEnum tipoAtendimentoEnum;
 
+    @Column(name = "preco", nullable = false)
+    private Double preco;
+
     @Column(name = "cliente_id", nullable = false)
     private Integer idCliente;
 

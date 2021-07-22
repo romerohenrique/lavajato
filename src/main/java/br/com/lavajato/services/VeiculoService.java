@@ -2,12 +2,16 @@ package br.com.lavajato.services;
 
 import br.com.lavajato.entity.Cliente;
 import br.com.lavajato.entity.Veiculo;
+import br.com.lavajato.repository.ClienteRepository;
 import br.com.lavajato.repository.VeiculoRepository;
 import br.com.lavajato.services.exceptionerror.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class VeiculoService {
@@ -27,9 +31,7 @@ public class VeiculoService {
     }
 
     public Veiculo save(Veiculo veiculo) {
-
-        Cliente cliente = clienteService.findById(1);
-
+        Cliente cliente = clienteService.findById(2);
         veiculo.setCliente(cliente);
         return veiculoRepository.save(veiculo);
     }

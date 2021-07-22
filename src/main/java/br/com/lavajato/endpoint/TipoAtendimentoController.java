@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Log4j2
 @RequestMapping("atendimentos")
@@ -26,7 +27,7 @@ public class TipoAtendimentoController {
         this.tipoAtendimentoService = tipoAtendimentoService;
     }
 
-    @PostMapping(path = "/registro")
+    @PostMapping(value = "/registro")
     public ResponseEntity<String> save(@RequestBody TipoAtendimento tipoAtendimento) {
         log.info("Salvando atendimento {}", DateUtil.formatLocalDateTimeToDataBaseStyle(LocalDateTime.now()));
         tipoAtendimentoService.save(tipoAtendimento);

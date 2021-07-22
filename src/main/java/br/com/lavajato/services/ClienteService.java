@@ -7,11 +7,14 @@ import br.com.lavajato.services.exceptionerror.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /*
 A classe Service, ficam as regras de negócio
  */
 @Service
 public class ClienteService {
+
 
     private final ClienteRepository clienteRepository;
     private final VeiculoRepository veiculoRepository;
@@ -22,21 +25,26 @@ public class ClienteService {
         this.veiculoRepository = veiculoRepository;
     }
 
+//    public List<Cliente> findAll(){
+//
+//        return clienteRepository.findAll();
+//    }
+
     public void replace(Cliente cliente) {
         clienteRepository.findById(cliente.getId()).orElseThrow(
-                () -> new EntityNotFoundException("Client not found"));
+                () -> new EntityNotFoundException("Cliente não encontrado"));
         clienteRepository.save(cliente);
 
     }
 
     public Cliente findById(Integer id) {
         return clienteRepository.findById(id).orElseThrow(
-                () -> new EntityNotFoundException("Id not found" + id));
+                () -> new EntityNotFoundException("Id não encontrado" + id));
     }
 
     public Cliente findByName(String nome) {
         return clienteRepository.findByNome(nome).orElseThrow(
-                () -> new EntityNotFoundException("Client not found" + nome));
+                () -> new EntityNotFoundException("Cliente não encontrado" + nome));
     }
 
     public Cliente save(Cliente cliente) {
