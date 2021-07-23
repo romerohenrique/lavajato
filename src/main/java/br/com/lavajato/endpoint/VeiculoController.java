@@ -11,7 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @RequestMapping("veiculos")
 @RestController
@@ -25,6 +24,18 @@ public class VeiculoController {
     public VeiculoController(VeiculoService veiculoService, DateUtil dateUtil) {
         this.veiculoService = veiculoService;
         this.dateUtil = dateUtil;
+    }
+
+    @GetMapping(path = "/{id}")
+    public ResponseEntity<Veiculo> findById(@PathVariable Integer id) {
+        Veiculo veiculos = veiculoService.finById(id);
+        return ResponseEntity.ok().body(veiculos);
+    }
+
+    @GetMapping
+    public ResponseEntity<Iterable<Veiculo>> findAll() {
+        Iterable<Veiculo> clientes = veiculoService.findAllVeiculos();
+        return ResponseEntity.ok().body(clientes);
     }
 
     @PostMapping(path = "/cadastrar", consumes = MediaType.APPLICATION_JSON_VALUE)
