@@ -4,31 +4,25 @@ import br.com.lavajato.entity.Cliente;
 import br.com.lavajato.repository.ClienteRepository;
 import br.com.lavajato.repository.VeiculoRepository;
 import br.com.lavajato.services.exceptionerror.EntityNotFoundException;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 /*
 A classe Service, ficam as regras de negócio
  */
+@AllArgsConstructor
 @Service
 public class ClienteService {
 
-
+    @Autowired
     private final ClienteRepository clienteRepository;
+    @Autowired
     private final VeiculoRepository veiculoRepository;
 
-    @Autowired
-    public ClienteService(ClienteRepository clienteRepository, VeiculoRepository veiculoRepository) {
-        this.clienteRepository = clienteRepository;
-        this.veiculoRepository = veiculoRepository;
+    public Iterable<Cliente> findAll() {
+        return clienteRepository.findAll();
     }
-
-//    public List<Cliente> findAll(){
-//
-//        return clienteRepository.findAll();
-//    }
 
     public void replace(Cliente cliente) {
         clienteRepository.findById(cliente.getId()).orElseThrow(

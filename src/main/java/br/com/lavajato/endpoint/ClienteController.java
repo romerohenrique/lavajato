@@ -11,7 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 
 @RestController
@@ -26,11 +25,11 @@ public class ClienteController {
     @Autowired
     private final ClienteService clienteService;
 
-//    @GetMapping
-//    public ResponseEntity<List<Cliente>> findAll() {
-//        List<Cliente> clientes = clienteService.findAll();
-//        return ResponseEntity.ok().body(clientes);
-//    }
+    @GetMapping
+    public ResponseEntity<Iterable<Cliente>> findAll() {
+        Iterable<Cliente> clientes = clienteService.findAll();
+        return ResponseEntity.ok().body(clientes);
+    }
 
     @GetMapping(path = "/{id}")
     public ResponseEntity<Cliente> findById(@PathVariable Integer id) {
