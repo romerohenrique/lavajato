@@ -3,21 +3,16 @@ package br.com.lavajato.services;
 import br.com.lavajato.entity.TipoAtendimento;
 import br.com.lavajato.enums.TipoAtendimentoEnum;
 import br.com.lavajato.repository.TipoAtendimentosRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+@AllArgsConstructor
 @Service
 public class TipoAtendimentoService {
 
-    //private final ClienteRepository clienteRepository;
-    //private final VeiculoRepository veiculoRepository;
-    private final TipoAtendimentosRepository tipoAtendimentosRepository;
-
-
     @Autowired
-    public TipoAtendimentoService(TipoAtendimentosRepository tipoAtendimentosRepository) {
-        this.tipoAtendimentosRepository = tipoAtendimentosRepository;
-    }
+    private final TipoAtendimentosRepository tipoAtendimentosRepository;
 
     public TipoAtendimento save(TipoAtendimento tipoAtendimento) {
 
